@@ -1,6 +1,13 @@
 import diamondHero from "@/assets/reaper.jpg";
 
 const HeroSection = () => {
+  // Use current origin in development, fallback to production domain
+  const getBase = () => {
+    if (typeof window !== "undefined") return window.location.origin;
+    return process.env.NEXT_PUBLIC_BASE_URL || "https://bornreaper.store";
+  };
+  const BASE = getBase();
+
   return (
     <section id="home" className="pt-24 pb-16 relative overflow-hidden">
       {/* Background Effects */}
@@ -20,14 +27,15 @@ const HeroSection = () => {
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-xl mx-auto lg:mx-0">
               Proses cepat, harga termurah, dan terpercaya. Top up diamond
-              Mobile Legends Bang Bang dengan mudah dan aman di icannstore.
+              Mobile Legends Bang Bang dengan mudah dan aman di Born Reaper
+              Store.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a href="#topup" className="btn-gaming text-center">
+              <a href={`${BASE}#topup`} className="btn-gaming text-center">
                 Top Up Sekarang
               </a>
               <a
-                href="#payment"
+                href={`${BASE}#payment`}
                 className="px-6 py-3 rounded-lg font-semibold border border-primary text-primary hover:bg-primary/10 transition-all duration-300 text-center"
               >
                 Lihat Metode Pembayaran

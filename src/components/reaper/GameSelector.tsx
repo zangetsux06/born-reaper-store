@@ -2,14 +2,62 @@ import { useState } from "react";
 import { Search, Gamepad2, Star } from "lucide-react";
 
 const games = [
-  { id: "ml", name: "Mobile Legends", category: "MOBA", popular: true, image: "🎮" },
-  { id: "ff", name: "Free Fire", category: "Battle Royale", popular: true, image: "🔥" },
-  { id: "pubg", name: "PUBG Mobile", category: "Battle Royale", popular: true, image: "🎯" },
-  { id: "genshin", name: "Genshin Impact", category: "RPG", popular: true, image: "⚔️" },
-  { id: "valorant", name: "Valorant", category: "FPS", popular: false, image: "🎪" },
-  { id: "codm", name: "Call of Duty Mobile", category: "FPS", popular: false, image: "💥" },
-  { id: "hsr", name: "Honkai Star Rail", category: "RPG", popular: true, image: "✨" },
-  { id: "roblox", name: "Roblox", category: "Sandbox", popular: false, image: "🧱" },
+  {
+    id: "ml",
+    name: "Mobile Legends",
+    category: "MOBA",
+    popular: true,
+    image: "🎮",
+  },
+  {
+    id: "ff",
+    name: "Free Fire",
+    category: "Battle Royale",
+    popular: true,
+    image: "🔥",
+  },
+  {
+    id: "pubg",
+    name: "PUBG Mobile",
+    category: "Battle Royale",
+    popular: true,
+    image: "🎯",
+  },
+  {
+    id: "genshin",
+    name: "Genshin Impact",
+    category: "RPG",
+    popular: true,
+    image: "⚔️",
+  },
+  {
+    id: "valorant",
+    name: "Valorant",
+    category: "FPS",
+    popular: false,
+    image: "🎪",
+  },
+  {
+    id: "codm",
+    name: "Call of Duty Mobile",
+    category: "FPS",
+    popular: false,
+    image: "💥",
+  },
+  {
+    id: "hsr",
+    name: "Honkai Star Rail",
+    category: "RPG",
+    popular: true,
+    image: "✨",
+  },
+  {
+    id: "roblox",
+    name: "Roblox",
+    category: "Sandbox",
+    popular: false,
+    image: "🧱",
+  },
 ];
 
 const categories = ["Semua", "MOBA", "Battle Royale", "RPG", "FPS", "Sandbox"];
@@ -20,14 +68,27 @@ const GameSelector = () => {
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
 
   const filteredGames = games.filter((game) => {
-    const matchesSearch = game.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === "Semua" || game.category === selectedCategory;
+    const matchesSearch = game.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "Semua" || game.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   const handleGameSelect = (gameId: string) => {
     setSelectedGame(gameId);
     // Scroll to top-up section
+    // persist selection so TopUp can read it
+    if (typeof window !== "undefined") {
+      const game = games.find((g) => g.id === gameId);
+      window.localStorage.setItem("bornreaper_selected_game", gameId);
+      window.dispatchEvent(
+        new CustomEvent("bornreaper:gameSelected", {
+          detail: { gameId, name: game?.name },
+        })
+      );
+    }
     setTimeout(() => {
       document.getElementById("topup")?.scrollIntoView({ behavior: "smooth" });
     }, 300);
@@ -41,7 +102,8 @@ const GameSelector = () => {
             Pilih Game Favorit
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Tersedia berbagai game populer dengan harga terbaik dan proses instan
+            Tersedia berbagai game populer dengan harga terbaik dan proses
+            instan
           </p>
         </div>
 
@@ -54,7 +116,7 @@ const GameSelector = () => {
               placeholder="Cari game..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500/50 focus:ring-2 focus:ring-red-500/20 transition-all"
+              className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-gray-500 focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
             />
           </div>
 
@@ -66,7 +128,7 @@ const GameSelector = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   selectedCategory === category
-                    ? "bg-red-600 text-white"
+                    ? "bg-primary text-primary-foreground"
                     : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
                 }`}
               >
@@ -84,23 +146,27 @@ const GameSelector = () => {
               onClick={() => handleGameSelect(game.id)}
               className={`group relative p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
                 selectedGame === game.id
-                  ? "bg-red-600/20 border-red-500"
+                  ? "bg-primary/20 border-primary"
                   : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
               }`}
             >
               {game.popular && (
                 <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 bg-yellow-500/20 rounded-full">
                   <Star className="w-3 h-3 text-yellow-500 fill-yellow-500" />
-                  <span className="text-[10px] text-yellow-500 font-medium">Popular</span>
+                  <span className="text-[10px] text-yellow-500 font-medium">
+                    Popular
+                  </span>
                 </div>
               )}
-              
+
               <div className="text-4xl mb-3">{game.image}</div>
-              <h3 className="font-semibold text-white text-sm mb-1">{game.name}</h3>
+              <h3 className="font-semibold text-white text-sm mb-1">
+                {game.name}
+              </h3>
               <span className="text-xs text-gray-500">{game.category}</span>
 
               {selectedGame === game.id && (
-                <div className="absolute inset-0 rounded-2xl ring-2 ring-red-500 pointer-events-none" />
+                <div className="absolute inset-0 rounded-2xl ring-2 ring-primary pointer-events-none" />
               )}
             </button>
           ))}

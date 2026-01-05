@@ -1,4 +1,10 @@
-import { CreditCard, Wallet, Building2, QrCode, Smartphone } from "lucide-react";
+import {
+  CreditCard,
+  Wallet,
+  Building2,
+  QrCode,
+  Smartphone,
+} from "lucide-react";
 
 const paymentCategories = [
   {
@@ -33,8 +39,8 @@ const paymentCategories = [
     icon: CreditCard,
     title: "Kartu",
     methods: ["Visa", "Mastercard", "JCB"],
-    color: "text-red-500",
-    bgColor: "bg-red-500/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
   },
 ];
 
@@ -57,13 +63,19 @@ const ReaperPaymentMethods = () => {
               key={index}
               className="p-5 bg-white/5 border border-white/10 rounded-2xl hover:border-white/20 transition-all"
             >
-              <div className={`w-12 h-12 ${category.bgColor} rounded-xl flex items-center justify-center mb-4`}>
+              <div
+                className={`w-12 h-12 ${category.bgColor} rounded-xl flex items-center justify-center mb-4`}
+              >
                 <category.icon className={`w-6 h-6 ${category.color}`} />
               </div>
-              <h3 className="font-semibold text-white mb-3">{category.title}</h3>
+              <h3 className="font-semibold text-white mb-3">
+                {category.title}
+              </h3>
               <div className="space-y-1">
                 {category.methods.map((method, idx) => (
-                  <p key={idx} className="text-xs text-gray-500">{method}</p>
+                  <p key={idx} className="text-xs text-gray-500">
+                    {method}
+                  </p>
                 ))}
               </div>
             </div>

@@ -2,45 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    /* Brand palette tuned to the Born Reaper logo (dark, white/gray, gold) */
+    --background: 220 12% 4%; /* very dark charcoal */
+    --foreground: 210 10% 98%; /* near white for text */
 
-    --card: 222 47% 9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 12% 8%;
+    --card-foreground: 210 10% 98%;
 
-    --popover: 222 47% 9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 12% 8%;
+    --popover-foreground: 210 10% 98%;
 
-    --primary: 199 89% 48%;
-    --primary-foreground: 222 47% 6%;
+    /* Gold / yellow (logo beak) */
+    --primary: 45 95% 55%;
+    --primary-foreground: 220 12% 4%;
 
-    --secondary: 45 93% 47%;
-    --secondary-foreground: 222 47% 6%;
+    /* Soft light gray / silver for secondary accents */
+    --secondary: 210 6% 80%;
+    --secondary-foreground: 220 12% 4%;
 
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 270 70% 60%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 45 95% 45%;
+    --accent-foreground: 210 10% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217 33% 20%;
     --input: 217 33% 17%;
-    --ring: 199 89% 48%;
+    --ring: 45 95% 55%;
 
     --radius: 0.75rem;
 
     /* Custom gaming colors */
-    --glow-primary: 199 89% 48%;
-    --glow-secondary: 45 93% 47%;
-    --gradient-start: 199 89% 48%;
-    --gradient-end: 270 70% 60%;
+    --glow-primary: 45 95% 55%;
+    --glow-secondary: 210 6% 80%;
+    --gradient-start: 45 95% 55%;
+    --gradient-end: 210 6% 80%;
   }
 }
 
@@ -51,29 +52,44 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Orbitron', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Orbitron", sans-serif;
   }
 }
 
 @layer components {
   .gaming-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 100%
+    );
   }
 
   .gaming-glow {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.1);
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3),
+      0 0 40px hsl(var(--primary) / 0.1);
   }
 
   .gaming-glow-gold {
-    box-shadow: 0 0 20px hsl(var(--secondary) / 0.3), 0 0 40px hsl(var(--secondary) / 0.1);
+    box-shadow: 0 0 20px hsl(var(--secondary) / 0.3),
+      0 0 40px hsl(var(--secondary) / 0.1);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -90,7 +106,11 @@
 
   .btn-gaming {
     @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 100%
+    );
     color: hsl(var(--foreground));
   }
 
@@ -114,12 +134,22 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
-    50% { box-shadow: 0 0 40px hsl(var(--primary) / 0.6); }
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+    }
   }
 }
