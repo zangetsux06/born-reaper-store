@@ -1,4 +1,4 @@
-import diamondHero from "@/assets/diamond-hero.png";
+import diamondHero from "@/assets/reaper.jpg";
 
 const HeroSection = () => {
   return (
@@ -19,7 +19,8 @@ const HeroSection = () => {
               <span className="text-foreground">Mobile Legends</span>
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-xl mx-auto lg:mx-0">
-              Proses cepat, harga termurah, dan terpercaya. Top up diamond Mobile Legends Bang Bang dengan mudah dan aman di icannstore.
+              Proses cepat, harga termurah, dan terpercaya. Top up diamond
+              Mobile Legends Bang Bang dengan mudah dan aman di icannstore.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a href="#topup" className="btn-gaming text-center">
@@ -36,15 +37,21 @@ const HeroSection = () => {
             {/* Stats */}
             <div className="flex gap-8 mt-12 justify-center lg:justify-start">
               <div className="text-center">
-                <div className="font-gaming text-3xl font-bold text-gradient">50K+</div>
+                <div className="font-gaming text-3xl font-bold text-gradient">
+                  50K+
+                </div>
                 <div className="text-muted-foreground text-sm">Transaksi</div>
               </div>
               <div className="text-center">
-                <div className="font-gaming text-3xl font-bold text-gradient">99%</div>
+                <div className="font-gaming text-3xl font-bold text-gradient">
+                  99%
+                </div>
                 <div className="text-muted-foreground text-sm">Sukses</div>
               </div>
               <div className="text-center">
-                <div className="font-gaming text-3xl font-bold text-gradient">24/7</div>
+                <div className="font-gaming text-3xl font-bold text-gradient">
+                  24/7
+                </div>
                 <div className="text-muted-foreground text-sm">Support</div>
               </div>
             </div>
